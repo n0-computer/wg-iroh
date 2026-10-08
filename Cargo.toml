@@ -1,0 +1,8 @@
+[workspace]
+members = ["wg-iroh", "wg-udp"]
+resolver = "3"
+
+# iroh's IP transport binds its sockets through netwatch. The branch adds a
+# bind hook that hands out sockets inside the tunnel instead.
+[patch.crates-io]
+netwatch = { git = "https://github.com/n0-computer/net-tools", branch = "rklaehn/custom-udp" }

@@ -1,0 +1,24 @@
+[package]
+name = "wg-udp"
+version = "0.1.0"
+edition = "2024"
+publish = false
+description = "Plain UDP through a userspace WireGuard tunnel from a wg-quick config"
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+clap = { version = "4", features = ["derive"] }
+rand = "0.9"
+tokio = { version = "1", features = ["full"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Userspace WireGuard: boringtun for the protocol, nym-smol-core for the
+# smoltcp TCP/IP stack with tokio sockets and DNS. nym-smol-core has no Nym
+# dependencies.
+boringtun = { version = "0.7", default-features = false }
+futures = "0.3"
+nym-smol-core = "1.21.6"
+smoltcp = { version = "0.12", default-features = false, features = ["std", "medium-ip", "proto-ipv4", "socket-udp", "socket-tcp"] }
+tracing = "0.1"
+x25519-dalek = { version = "2", features = ["static_secrets"] }
