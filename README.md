@@ -19,13 +19,14 @@ address, never the real one.
 The only socket the process opens to the outside is the WireGuard UDP flow
 to the entry endpoint.
 
-It depends on two branches:
+It depends on:
 
 - [netwatch `rklaehn/custom-udp`][netwatch branch]: `CustomUdpSocket` and a
   process-wide bind hook. This is the hack; a real integration would pass the
   socket to the endpoint builder explicitly.
-- [iroh `rklaehn/pkarr-proxy-url`][iroh PR]: pkarr follows the endpoint's
-  `proxy_url`. Without it, pkarr only picks up a proxy from `HTTPS_PROXY`.
+- iroh `main`: pkarr follows the endpoint's `proxy_url` since [#4595][iroh PR],
+  which is not in a release yet. Before that, pkarr only picked up a proxy
+  from `HTTPS_PROXY`.
 
 ## Crates
 
@@ -60,6 +61,25 @@ cargo run -p wg-iroh -- connect entry.conf <endpoint-id> --exit exit.conf
 - Two hops are implemented but not tested against real gateways yet.
 - VPN exits may restrict ports. NymVPN's exit policy blocks 6881, for
   example, which the standard mainline DHT bootstrap nodes use.
+
+## License
+
+Copyright 2026 N0, INC.
+
+This project is licensed under either of
+
+ * Apache License, Version 2.0, ([LICENSE-APACHE](LICENSE-APACHE) or
+   http://www.apache.org/licenses/LICENSE-2.0)
+ * MIT license ([LICENSE-MIT](LICENSE-MIT) or
+   http://opensource.org/licenses/MIT)
+
+at your option.
+
+### Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this project by you, as defined in the Apache-2.0 license,
+shall be dual licensed as above, without any additional terms or conditions.
 
 [iroh]: https://docs.rs/iroh
 [boringtun]: https://docs.rs/boringtun

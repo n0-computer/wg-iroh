@@ -3,6 +3,7 @@ name = "wg-udp"
 version = "0.1.0"
 edition = "2024"
 publish = false
+license = "MIT OR Apache-2.0"
 description = "Plain UDP through a userspace WireGuard tunnel from a wg-quick config"
 
 [dependencies]

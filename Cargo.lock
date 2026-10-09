@@ -1509,7 +1509,7 @@ checksum = "791930b43c0d5973160d90a8f3894509f2b273430f5c5c73b668636d0287c5c0"
 [[package]]
 name = "iroh"
 version = "1.3.0"
-source = "git+https://github.com/n0-computer/iroh?branch=rklaehn%2Fpkarr-proxy-url#bddd7ef83558c17e169da4224718c035a0e4034d"
+source = "git+https://github.com/n0-computer/iroh?branch=main#188593d6e2fd6f9a1739bc2c5a543b0131bf3519"
 dependencies = [
  "backon",
  "blake3",
@@ -1558,7 +1558,7 @@ dependencies = [
 [[package]]
 name = "iroh-base"
 version = "1.3.0"
-source = "git+https://github.com/n0-computer/iroh?branch=rklaehn%2Fpkarr-proxy-url#bddd7ef83558c17e169da4224718c035a0e4034d"
+source = "git+https://github.com/n0-computer/iroh?branch=main#188593d6e2fd6f9a1739bc2c5a543b0131bf3519"
 dependencies = [
  "curve25519-dalek 5.0.0",
  "data-encoding",
@@ -1576,7 +1576,7 @@ dependencies = [
 [[package]]
 name = "iroh-dns"
 version = "1.3.0"
-source = "git+https://github.com/n0-computer/iroh?branch=rklaehn%2Fpkarr-proxy-url#bddd7ef83558c17e169da4224718c035a0e4034d"
+source = "git+https://github.com/n0-computer/iroh?branch=main#188593d6e2fd6f9a1739bc2c5a543b0131bf3519"
 dependencies = [
  "arc-swap",
  "cfg_aliases",
@@ -1625,7 +1625,7 @@ dependencies = [
 [[package]]
 name = "iroh-relay"
 version = "1.3.0"
-source = "git+https://github.com/n0-computer/iroh?branch=rklaehn%2Fpkarr-proxy-url#bddd7ef83558c17e169da4224718c035a0e4034d"
+source = "git+https://github.com/n0-computer/iroh?branch=main#188593d6e2fd6f9a1739bc2c5a543b0131bf3519"
 dependencies = [
  "blake3",
  "bytes",
@@ -1646,6 +1646,7 @@ dependencies = [
  "noq",
  "noq-proto",
  "num_enum",
+ "percent-encoding",
  "pin-project",
  "postcard",
  "rand 0.10.3",
