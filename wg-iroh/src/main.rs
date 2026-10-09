@@ -34,7 +34,7 @@ use std::{
 use anyhow::{Context as _, Result};
 use clap::{Parser, Subcommand};
 use iroh::{
-    Endpoint, EndpointAddr, EndpointId, RelayMode, RelayUrl,
+    Endpoint, EndpointAddr, EndpointId, RelayUrl,
     dns::{BoxIter, DnsError, DnsResolver, Resolver, TxtRecordData},
     address_lookup::{PkarrPublisher, PkarrResolver},
     endpoint::{Connection, NetReportConfig, PortmapperConfig, presets},
@@ -200,13 +200,14 @@ async fn tunneled_endpoint(tunnel: &Arc<Tunnel>, proxy: &ConnectProxy) -> Result
     // cannot carry. The HTTPS relay probes go through it fine.
     let mut net_report = NetReportConfig::minimal();
     net_report.https_probes = true;
-    let endpoint = Endpoint::builder(presets::Minimal)
-        .relay_mode(RelayMode::Default)
+    let endpoint = Endpoint::builder(presets::N0)
         .dns_resolver(DnsResolver::custom(TunnelResolver(tunnel.clone())))
         .proxy_url(proxy.url().parse()?)
         .net_report_config(net_report)
-        // pkarr over HTTPS, through the proxy like the relay; no DNS-based
-        // lookup, which would query the system resolver for every peer id.
+        // Replace the preset's address lookups with pkarr over HTTPS, which
+        // goes through the proxy like the relay. DNS-based lookup needs TXT
+        // records, which the tunnel resolver does not support.
+        .clear_address_lookup()
         .address_lookup(PkarrPublisher::n0_dns())
         .address_lookup(PkarrResolver::n0_dns())
         // Only the IPv4 tunnel socket, no OS sockets.
